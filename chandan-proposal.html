@@ -1,1 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automation Studio</title>
+<meta name="description" content="Custom software & automation for Indian businesses by Chandan Kumar — AI Research & Data Analyst. ERP, DSR, CRM, Inventory, WhatsApp AI, school, hospital & institute systems, built around how you work.">
+<meta property="og:title" content="Automation Studio — Custom Business Software">
+<meta property="og:description" content="Custom internal software & automations for Indian SMBs — reports, dashboards, WhatsApp AI, CRMs and full management systems. By Chandan Kumar, Patna.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1F5FE0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
+:root{
+  --bg:#F6F8FC; --surface:#FFFFFF; --surface-2:#EEF3FB; --tint-warm:#FBFCFE;
+  --text:#0E1A2E; --muted:#57667C; --border:#E4EAF4; --border-strong:#D3DDEC;
+  --primary:#2360E8; --primary-deep:#1543B4; --primary-soft:#EAF0FE;
+  --accent:#0FB5A6; --accent-ink:#0A857A; --accent-soft:#E4F7F4;
+  --grad:linear-gradient(135deg,#2E6BF0 0%,#1B4DCB 55%,#12379E 100%);
+  --grad-soft:linear-gradient(135deg,#EAF0FE 0%,#E4F7F4 100%);
+  --primary-tint:rgba(35,96,232,.10); --primary-tint-2:rgba(35,96,232,.055);
+  --accent-tint:rgba(15,181,166,.12);
+  --shadow-sm:0 1px 2px rgba(14,26,46,.05), 0 2px 6px -3px rgba(14,26,46,.08);
+  --shadow:0 2px 6px -2px rgba(14,26,46,.08), 0 20px 44px -26px rgba(20,45,120,.32);
+  --shadow-lg:0 4px 10px -4px rgba(14,26,46,.1), 0 40px 70px -32px rgba(20,45,120,.42);
+  --ring:rgba(35,96,232,.42);
+  --grid-line:rgba(20,45,120,.05);
+  --nav-h:70px;
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg); color:var(--text);
+  line-height:1.62; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Sora','Segoe UI',system-ui,sans-serif;line-height:1.13;letter-spacing:-.022em;text-wrap:balance;font-weight:700}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img,svg{display:block}
+.mono{font-family:'JetBrains Mono',ui-monospace,Consolas,monospace;font-variant-numeric:tabular-nums}
+
+::selection{background:var(--primary-tint);color:var(--text)}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:20px;border:3px solid var(--bg)}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:6px}
+
+/* ---- Layout ---- */
+.wrap{max-width:1200px;margin:0 auto;padding:0 26px}
+section{padding:108px 0;position:relative}
+.section-alt{background:var(--surface)}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--primary)}
+.eyebrow::before{content:"";width:24px;height:2px;border-radius:2px;background:var(--grad)}
+.sec-head{max-width:680px;margin:0 auto 62px;text-align:center}
+.sec-head .eyebrow{margin-bottom:18px}
+.sec-head h2{font-size:clamp(1.95rem,3.8vw,3rem);margin-bottom:16px;font-weight:700}
+.sec-head p{color:var(--muted);font-size:1.06rem;max-width:580px;margin:0 auto}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* ---- Buttons ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:'Inter',sans-serif;font-weight:600;font-size:.95rem;padding:13px 25px;border-radius:13px;cursor:pointer;border:1px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,border-color .2s ease,color .2s ease;white-space:nowrap}
+.btn svg{width:17px;height:17px}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 12px 26px -12px rgba(35,96,232,.75)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 34px -12px rgba(35,96,232,.9)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--border-strong)}
+.btn-ghost:hover{background:var(--primary-tint-2);border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
+.btn-wa{background:#25D366;color:#04310f}
+.btn-wa:hover{background:#1eb658;transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(37,211,102,.8)}
+.btn-ig{background:linear-gradient(135deg,#F58529,#DD2A7B 55%,#8134AF);color:#fff}
+.btn-ig:hover{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(221,42,123,.7)}
+.btn-block{width:100%}
+
+/* ---- Scroll progress ---- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:200;transition:width .1s linear}
+
+/* ---- Nav ---- */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:150;display:flex;align-items:center;transition:background .25s ease,box-shadow .25s ease,border-color .25s ease;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(255,255,255,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom-color:var(--border);box-shadow:var(--shadow-sm)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;width:100%}
+.brand{display:flex;align-items:center;gap:12px;font-family:'Sora',sans-serif;font-weight:700}
+.brand-mark{width:40px;height:40px;border-radius:12px;background:var(--grad);display:grid;place-items:center;box-shadow:0 10px 20px -8px rgba(35,96,232,.75);flex-shrink:0}
+.brand-mark svg{width:23px;height:23px}
+.brand-txt{display:flex;flex-direction:column;line-height:1.08}
+.brand-txt b{font-size:1.04rem;letter-spacing:-.01em}
+.brand-txt span{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a{padding:9px 14px;font-size:.92rem;font-weight:500;color:var(--muted);border-radius:9px;position:relative;transition:color .2s ease}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:"";position:absolute;left:14px;right:14px;bottom:5px;height:2px;background:var(--grad);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-right{display:flex;align-items:center;gap:11px}
+.icon-btn{width:42px;height:42px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);display:grid;place-items:center;cursor:pointer;transition:all .2s ease}
+.icon-btn:hover{border-color:var(--primary);color:var(--primary)}
+.icon-btn svg{width:19px;height:19px}
+.hamburger{display:none}
+
+/* ---- Hero ---- */
+.hero{position:relative;padding:calc(var(--nav-h) + 70px) 0 96px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  background-size:36px 36px;
+  -webkit-mask-image:radial-gradient(120% 92% at 62% 10%,#000 38%,transparent 76%);
+  mask-image:radial-gradient(120% 92% at 62% 10%,#000 38%,transparent 76%)}
+.hero-glow{position:absolute;z-index:0;width:760px;height:760px;right:-160px;top:-240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(35,96,232,.12) 0%,transparent 66%);pointer-events:none}
+.hero-glow2{position:absolute;z-index:0;width:520px;height:520px;left:-180px;bottom:-220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(15,181,166,.10) 0%,transparent 66%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.03fr .97fr;gap:56px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;padding:7px 15px 7px 12px;border-radius:50px;background:var(--surface);border:1px solid var(--border);font-size:.8rem;font-weight:600;color:var(--muted);box-shadow:var(--shadow-sm);margin-bottom:24px}
+.hero-badge b{color:var(--text)}
+.badge-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-tint);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px var(--accent-tint)}50%{box-shadow:0 0 0 7px transparent}}
+.hero h1{font-size:clamp(2.4rem,5.3vw,3.85rem);font-weight:800;margin-bottom:22px;letter-spacing:-.03em}
+.hero h1 .accent-word{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.hero-sub{font-size:1.14rem;color:var(--muted);max-width:520px;margin-bottom:32px}
+.hero-cta{display:flex;gap:13px;flex-wrap:wrap}
+.trust-row{margin-top:30px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.trust-row .ti{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;color:var(--muted);font-weight:500}
+.trust-row .ti svg{width:18px;height:18px;color:var(--accent);flex-shrink:0}
+
+/* ---- Product card mock ---- */
+.hero-visual{perspective:1500px}
+.pcard{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow-lg);padding:20px;transform:rotateY(-7deg) rotateX(3deg);transform-style:preserve-3d;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.hero-visual:hover .pcard{transform:rotateY(-3deg) rotateX(1.5deg) translateY(-5px)}
+.pcard-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.pcard-title .tt{font-family:'Sora',sans-serif;font-weight:600;font-size:.98rem}
+.pcard-title .dd{font-size:.72rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.pcard-badge{display:inline-flex;align-items:center;gap:6px;font-size:.68rem;font-weight:600;color:var(--accent-ink);background:var(--accent-tint);padding:5px 10px;border-radius:8px}
+.pcard-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.kpi{background:var(--surface-2);border:1px solid var(--border);border-radius:13px;padding:11px 12px}
+.kpi .lbl{font-size:.64rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:5px;font-weight:600}
+.kpi .val{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:1.02rem;letter-spacing:-.02em}
+.kpi .up{color:var(--accent-ink);font-size:.82rem;display:inline-flex;align-items:center;gap:3px}
+.kpi .up svg{width:12px;height:12px}
+.chart-box{background:var(--surface-2);border:1px solid var(--border);border-radius:13px;padding:14px 14px 10px;margin-bottom:14px}
+.chart-box .ct{display:flex;align-items:center;justify-content:space-between;font-size:.7rem;color:var(--muted);margin-bottom:10px;font-family:'JetBrains Mono',monospace}
+.bars{display:flex;align-items:flex-end;gap:9px;height:78px}
+.bar{flex:1;background:var(--primary-tint);border-radius:5px 5px 3px 3px;position:relative;min-height:6px}
+.bar.today{background:var(--grad)}
+.bar-labels{display:flex;gap:9px;margin-top:7px}
+.bar-labels span{flex:1;text-align:center;font-size:.6rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.spark-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:0 2px}
+.spark-row .st{font-size:.68rem;color:var(--muted);white-space:nowrap}
+.spark svg{width:100%;height:34px;overflow:visible}
+.spark path.line{fill:none;stroke:var(--primary);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.wa-chip{display:flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:10px 12px}
+.wa-ico{width:28px;height:28px;border-radius:8px;background:#25D366;display:grid;place-items:center;flex-shrink:0}
+.wa-ico svg{width:16px;height:16px;fill:#fff}
+.wa-chip .wt{font-size:.76rem;line-height:1.3}
+.wa-chip .wt b{font-weight:600}
+.wa-chip .wtime{margin-left:auto;font-size:.64rem;color:var(--muted);font-family:'JetBrains Mono',monospace;display:inline-flex;align-items:center;gap:4px}
+.wa-chip .tick{color:#25D366;font-weight:700}
+.pcard-float{position:absolute;right:-16px;bottom:22px;background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:9px 12px;box-shadow:var(--shadow);display:flex;align-items:center;gap:9px;transform:translateZ(55px)}
+.pcard-float .fi{width:26px;height:26px;border-radius:8px;background:var(--primary-tint);color:var(--primary);display:grid;place-items:center}
+.pcard-float .fi svg{width:15px;height:15px}
+.pcard-float .fx b{font-size:.78rem;display:block;font-family:'Sora',sans-serif}
+.pcard-float .fx span{font-size:.62rem;color:var(--muted)}
+
+/* ---- Stats ---- */
+.stats{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-top:46px;padding-bottom:46px}
+.stat{text-align:center;position:relative}
+.stat:not(:last-child)::after{content:"";position:absolute;right:-10px;top:14%;height:72%;width:1px;background:var(--border)}
+.stat .num{font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(2rem,3.4vw,2.7rem);letter-spacing:-.03em;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;font-variant-numeric:tabular-nums}
+.stat .lbl{font-size:.83rem;color:var(--muted);margin-top:5px;font-weight:500}
+
+/* ---- Systems grid ---- */
+.sys-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.sys-card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:26px 24px 24px;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.sys-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.sys-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--border-strong)}
+.sys-card:hover::before{transform:scaleX(1)}
+.sys-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.sys-icon{width:48px;height:48px;border-radius:13px;background:var(--grad-soft);color:var(--primary);display:grid;place-items:center;transition:background .25s ease,color .25s ease}
+.sys-icon svg{width:24px;height:24px}
+.sys-card:hover .sys-icon{background:var(--grad);color:#fff}
+.module-chip{font-size:.68rem;font-weight:600;letter-spacing:.04em;color:var(--muted);background:var(--surface-2);border-radius:8px;padding:5px 10px}
+.sys-card h3{font-size:1.15rem;margin-bottom:8px;letter-spacing:-.015em;font-weight:600}
+.sys-hook{font-size:.9rem;color:var(--muted);margin-bottom:16px;min-height:2.6em}
+.sys-feats{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.sys-feats li{display:flex;align-items:flex-start;gap:9px;font-size:.85rem}
+.sys-feats li svg{width:15px;height:15px;color:var(--accent);flex-shrink:0;margin-top:3px}
+.sys-foot{display:flex;flex-direction:column;gap:9px;padding-top:15px;border-top:1px dashed var(--border)}
+.sys-outcome{display:flex;align-items:flex-start;gap:8px;font-size:.83rem;font-weight:500}
+.sys-outcome svg{width:15px;height:15px;color:var(--accent);flex-shrink:0;margin-top:3px}
+.sys-bestfor{font-size:.78rem;color:var(--muted)}
+.sys-bestfor b{color:var(--primary);font-weight:600}
+
+/* ---- Industries ---- */
+.ind-band{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:900px;margin:0 auto}
+.ind-chip{display:inline-flex;align-items:center;gap:9px;padding:11px 19px;border-radius:50px;background:var(--surface);border:1px solid var(--border);font-size:.9rem;font-weight:500;box-shadow:var(--shadow-sm);transition:all .2s ease}
+.ind-chip:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
+.ind-chip svg{width:17px;height:17px;color:var(--primary)}
+
+/* ---- About / Founder ---- */
+#about{overflow:hidden}
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+.about-copy .eyebrow{margin-bottom:18px}
+.about-copy h2{font-size:clamp(1.9rem,3.6vw,2.8rem);margin-bottom:18px;font-weight:700}
+.about-copy p{color:var(--muted);font-size:1.03rem;margin-bottom:16px}
+.about-copy p strong{color:var(--text);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 26px}
+.chip{padding:7px 15px;border-radius:50px;font-size:.82rem;font-weight:500;background:var(--surface);color:var(--text);border:1px solid var(--border);transition:all .2s ease}
+.chip:hover{border-color:var(--primary);color:var(--primary)}
+.cert-list{display:flex;flex-direction:column;gap:11px}
+.cert-item{display:flex;align-items:center;gap:13px;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm)}
+.cert-badge{width:40px;height:40px;border-radius:11px;background:var(--grad-soft);color:var(--primary);display:grid;place-items:center;flex-shrink:0}
+.cert-badge svg{width:22px;height:22px}
+.cert-item .ci b{font-size:.96rem;font-family:'Sora',sans-serif;font-weight:600;display:block}
+.cert-item .ci span{font-size:.78rem;color:var(--muted)}
+.about-visual{display:flex;justify-content:center}
+.profile-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:38px 32px;box-shadow:var(--shadow-lg);text-align:center;max-width:360px;width:100%;position:relative;overflow:hidden}
+.profile-card::before{content:"";position:absolute;top:0;left:0;right:0;height:96px;background:var(--grad-soft)}
+.avatar-wrap{position:relative;width:132px;height:132px;margin:0 auto 20px}
+.avatar-ring{position:absolute;inset:-9px;border-radius:50%;border:2px dashed rgba(35,96,232,.32);animation:spin 26s linear infinite}
+.avatar-ring2{position:absolute;inset:-18px;border-radius:50%;border:1.5px dashed rgba(15,181,166,.24);animation:spin 40s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.avatar{position:relative;width:132px;height:132px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;font-family:'Sora',sans-serif;font-weight:700;font-size:2.6rem;letter-spacing:-.02em;border:5px solid var(--surface);box-shadow:0 16px 36px -14px rgba(35,96,232,.6)}
+.profile-name{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:4px}
+.profile-role{font-size:.9rem;color:var(--primary);font-weight:600;margin-bottom:14px}
+.profile-loc{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);background:var(--surface-2);border:1px solid var(--border);padding:6px 13px;border-radius:50px;margin-bottom:20px}
+.profile-loc svg{width:14px;height:14px;color:var(--primary)}
+.profile-verified{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.pv{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;color:var(--accent-ink);background:var(--accent-soft);border-radius:50px;padding:6px 12px}
+.pv svg{width:13px;height:13px}
+
+/* ---- Why ---- */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.why-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:30px 26px;transition:transform .25s ease,box-shadow .25s ease}
+.why-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.why-ico{width:52px;height:52px;border-radius:14px;background:var(--grad-soft);color:var(--primary);display:grid;place-items:center;margin-bottom:18px}
+.why-ico svg{width:25px;height:25px}
+.why-card h3{font-size:1.1rem;margin-bottom:9px;font-weight:600}
+.why-card p{font-size:.9rem;color:var(--muted)}
+
+/* ---- Process ---- */
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.proc-grid::before{content:"";position:absolute;top:30px;left:11%;right:11%;height:2px;background:linear-gradient(90deg,var(--border),var(--primary),var(--border));z-index:0}
+.proc-step{position:relative;z-index:1;text-align:center}
+.proc-num{font-family:'Sora',sans-serif;font-weight:800;font-size:2.7rem;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;margin-bottom:14px}
+.proc-ico{width:62px;height:62px;border-radius:17px;background:var(--surface);border:1px solid var(--border);color:var(--primary);display:grid;place-items:center;margin:0 auto 18px;box-shadow:var(--shadow-sm)}
+.proc-ico svg{width:26px;height:26px}
+.proc-step h3{font-size:1.06rem;margin-bottom:8px;font-weight:600}
+.proc-step p{font-size:.87rem;color:var(--muted);max-width:220px;margin:0 auto}
+
+/* ---- Testimonials ---- */
+.testi-viewport{overflow:hidden;max-width:830px;margin:0 auto}
+.testi-track{display:flex;transition:transform .55s cubic-bezier(.16,1,.3,1)}
+.testi-card{flex:0 0 100%;padding:0 6px}
+.testi-inner{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:44px 44px;box-shadow:var(--shadow);text-align:center}
+.testi-quote-ico{width:44px;height:44px;color:var(--primary);opacity:.3;margin:0 auto 18px}
+.testi-stars{display:flex;justify-content:center;gap:3px;margin-bottom:16px;color:#F5A623}
+.testi-stars svg{width:18px;height:18px;fill:currentColor}
+.testi-text{font-size:1.2rem;line-height:1.7;font-family:'Sora',sans-serif;font-weight:400;margin-bottom:26px;letter-spacing:-.01em}
+.testi-author{display:flex;align-items:center;justify-content:center;gap:13px}
+.testi-avatar{width:50px;height:50px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;font-family:'Sora',sans-serif;font-weight:600;font-size:1.05rem}
+.testi-meta{text-align:left}
+.testi-meta b{font-size:.95rem;display:block}
+.testi-meta span{font-size:.8rem;color:var(--muted)}
+.testi-controls{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:32px}
+.testi-dots{display:flex;gap:8px}
+.testi-dot{width:9px;height:9px;border-radius:50%;background:var(--border-strong);border:none;cursor:pointer;padding:0;transition:all .3s ease}
+.testi-dot.active{width:26px;border-radius:5px;background:var(--grad)}
+
+/* ---- FAQ ---- */
+.faq-wrap{max-width:770px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:15px;overflow:hidden;transition:border-color .2s ease,box-shadow .2s ease}
+.faq-item[open]{border-color:var(--primary);box-shadow:var(--shadow-sm)}
+.faq-item summary{list-style:none;cursor:pointer;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-weight:600;font-size:1rem;font-family:'Sora',sans-serif}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-q-ico{width:28px;height:28px;border-radius:9px;background:var(--grad-soft);color:var(--primary);display:grid;place-items:center;flex-shrink:0;transition:transform .3s ease,background .2s ease,color .2s ease}
+.faq-q-ico svg{width:16px;height:16px}
+.faq-item[open] .faq-q-ico{transform:rotate(45deg);background:var(--grad);color:#fff}
+.faq-a{padding:0 22px 20px;color:var(--muted);font-size:.92rem;line-height:1.72}
+
+/* ---- Contact ---- */
+.contact-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:start}
+.contact-left .eyebrow{margin-bottom:16px}
+.contact-left h2{font-size:clamp(1.9rem,3.4vw,2.7rem);margin-bottom:14px;font-weight:700}
+.contact-left>p{color:var(--muted);font-size:1.05rem;margin-bottom:28px;max-width:440px}
+.contact-cards{display:flex;flex-direction:column;gap:13px}
+.cc{display:flex;align-items:center;gap:15px;padding:15px 18px;background:var(--surface);border:1px solid var(--border);border-radius:14px;transition:all .2s ease}
+.cc:hover{transform:translateX(5px);border-color:var(--primary);box-shadow:var(--shadow-sm)}
+.cc-ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex-shrink:0}
+.cc-ico svg{width:20px;height:20px}
+.cc-phone .cc-ico{background:var(--primary-soft);color:var(--primary)}
+.cc-wa .cc-ico{background:rgba(37,211,102,.14);color:#1eae54}
+.cc-mail .cc-ico{background:var(--accent-soft);color:var(--accent-ink)}
+.cc-ig .cc-ico{background:linear-gradient(135deg,#F58529,#DD2A7B 60%,#8134AF);color:#fff}
+.cc-loc .cc-ico{background:var(--primary-soft);color:var(--primary)}
+.cc .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.cc .val{font-weight:600;font-size:.98rem}
+.form-panel{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:36px;box-shadow:var(--shadow)}
+.form-panel h3{font-size:1.42rem;margin-bottom:6px;font-weight:700}
+.form-panel .fp-sub{color:var(--muted);font-size:.92rem;margin-bottom:24px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.82rem;font-weight:600;margin-bottom:7px}
+.field label span{color:var(--primary)}
+.field input,.field select,.field textarea{width:100%;padding:13px 15px;border:1.5px solid var(--border);border-radius:12px;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:.95rem;transition:border-color .2s ease,box-shadow .2s ease;outline:none;-webkit-appearance:none;appearance:none}
+.field textarea{resize:vertical;min-height:88px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-tint)}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted);opacity:.7}
+.select-wrap{position:relative}
+.select-wrap::after{content:"";position:absolute;right:16px;top:50%;width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.form-note{font-size:.78rem;color:var(--muted);margin-top:12px;text-align:center}
+.form-success{display:none;align-items:center;gap:10px;background:var(--accent-soft);color:var(--accent-ink);border-radius:12px;padding:13px 16px;font-size:.9rem;font-weight:500;margin-top:14px}
+.form-success.show{display:flex}
+.form-success svg{width:20px;height:20px;flex-shrink:0}
+
+/* ---- Footer ---- */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:66px 0 26px}
+.foot-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1.1fr;gap:40px;margin-bottom:46px}
+.foot-brand .brand{margin-bottom:16px}
+.foot-tag{font-size:.9rem;color:var(--muted);max-width:300px;margin-bottom:20px}
+.foot-social{display:flex;gap:10px}
+.foot-social a{width:40px;height:40px;border-radius:11px;background:var(--bg);border:1px solid var(--border);display:grid;place-items:center;color:var(--muted);transition:all .2s ease}
+.foot-social a:hover{background:var(--primary);color:#fff;border-color:var(--primary);transform:translateY(-2px)}
+.foot-social a.ig:hover{background:linear-gradient(135deg,#F58529,#DD2A7B 60%,#8134AF);border-color:transparent}
+.foot-social a svg{width:18px;height:18px}
+.foot-col h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:16px;font-weight:600}
+.foot-col ul{display:flex;flex-direction:column;gap:10px}
+.foot-col a,.foot-col li{font-size:.88rem;color:var(--muted);transition:color .2s ease}
+.foot-col a:hover{color:var(--primary)}
+.foot-contact-chip{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:11px;margin-top:6px}
+.foot-contact-chip svg{width:15px;height:15px;color:var(--primary)}
+.foot-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.foot-bottom p{font-size:.82rem;color:var(--muted)}
+
+/* ---- Floating WhatsApp ---- */
+.wa-float{position:fixed;right:22px;bottom:22px;z-index:120;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 12px 28px -8px rgba(37,211,102,.7);transition:transform .25s ease}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:30px;height:30px;fill:#fff}
+.wa-float::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;animation:waRing 2.4s ease-out infinite}
+@keyframes waRing{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
+
+/* ---- Mobile nav ---- */
+.mob-panel{position:fixed;inset:0;z-index:160;background:rgba(6,12,24,.5);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+.mob-panel.open{opacity:1;visibility:visible}
+.mob-inner{position:absolute;top:0;right:0;height:100%;width:min(320px,84vw);background:var(--surface);border-left:1px solid var(--border);padding:26px 22px;display:flex;flex-direction:column;gap:6px;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);overflow-y:auto}
+.mob-panel.open .mob-inner{transform:translateX(0)}
+.mob-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.mob-inner a{padding:13px 14px;border-radius:11px;font-weight:500;color:var(--text);font-size:1rem;transition:background .2s ease}
+.mob-inner a:hover{background:var(--primary-tint-2)}
+.mob-inner .btn{margin-top:10px}
+
+/* ---- Reveal ---- */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---- Responsive ---- */
+@media (max-width:960px){
+  .hero .wrap{grid-template-columns:1fr;gap:46px}
+  .hero-visual{max-width:440px;margin:0 auto;width:100%}
+  .pcard{transform:none}
+  .hero-visual:hover .pcard{transform:translateY(-4px)}
+  .sys-grid,.why-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr;gap:44px}
+  .about-visual{order:-1}
+  .proc-grid{grid-template-columns:repeat(2,1fr);gap:36px 24px}
+  .proc-grid::before{display:none}
+  .contact-grid{grid-template-columns:1fr;gap:34px}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media (max-width:680px){
+  section{padding:76px 0}
+  .nav-links,.desktop-cta{display:none}
+  .hamburger{display:grid}
+  .stats .wrap{grid-template-columns:repeat(2,1fr);gap:30px 12px}
+  .stat:nth-child(2)::after{display:none}
+  .sys-grid,.why-grid{grid-template-columns:1fr}
+  .proc-grid{grid-template-columns:1fr}
+  .testi-inner{padding:32px 24px}
+  .testi-text{font-size:1.06rem}
+  .form-panel{padding:26px 22px}
+  .trust-row{gap:14px}
+  .foot-grid{grid-template-columns:1fr;gap:28px}
+  .foot-bottom{flex-direction:column;text-align:center}
+  .pcard-float{right:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== ICON SPRITE ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8 12 3l9 5v8l-9 5-9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v9H3zM14 9h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2.2"/><circle cx="18" cy="5" r="2.2"/><path d="M8.2 19H14a4 4 0 0 0 0-8H9.5a4 4 0 0 1 0-8H16"/></symbol>
+    <symbol id="i-receipt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v20l2-1.4 2 1.4 2-1.4 2 1.4 2-1.4 2 1.4V2l-2 1.4L14 2l-2 1.4L10 2 8 3.4 6 2Z"/><path d="M9 8h6M9 12h6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.8-.8L3 20.5l1.4-4.2A8.4 8.4 0 1 1 21 11.5Z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></symbol>
+    <symbol id="i-aibot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M2 12v3M22 12v3"/><path d="M9.5 16.5h5"/></symbol>
+    <symbol id="i-attend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m15 11 2 2 4-4"/></symbol>
+    <symbol id="i-school" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V15c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.5M21 8v5"/></symbol>
+    <symbol id="i-hospital" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V6l8-3 8 3v15"/><path d="M2 21h20"/><path d="M12 8v5M9.5 10.5h5"/></symbol>
+    <symbol id="i-certificate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 8 22l4-2 4 2-1-8.5"/></symbol>
+    <symbol id="i-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></symbol>
+    <symbol id="i-funnel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v7l-4 2v-9L3 4Z"/></symbol>
+    <symbol id="i-tailor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8 7.5 20 18M8 16.5 20 6"/></symbol>
+    <symbol id="i-plug" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6M15 2v6M7 8h10v3a5 5 0 0 1-10 0V8ZM12 16v6"/></symbol>
+    <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 1.5 5 5 5 9l-3 3H10l-3-3c0-4 2-7.5 5-9Z"/><circle cx="12" cy="9" r="1.6"/><path d="M9 17c-1.5.5-2.5 2-2.5 4 2 0 3.5-1 4-2.5M15 17c1.5.5 2.5 2 2.5 4-2 0-3.5-1-4-2.5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-handshake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2 3-3 4 1-2-7-5-1-3 2-4-1-1 6 4 1Z"/><path d="M6 11 3 10"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></symbol>
+    <symbol id="i-blueprint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m14.5 5.5 4 4L8 20l-4 1 1-4L14.5 5.5Z"/><path d="m13 7 4 4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5L16 9"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4c3-2 7 2 10 0v8c-3 2-7-2-10 0"/></symbol>
+    <symbol id="i-checkmini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14l5-5 5 5"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/><circle cx="12" cy="12" r="2.4"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L18 12l5 2v4a2 2 0 0 1-2.2 2A17 17 0 0 1 4 6.2 2 2 0 0 1 6 4"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-loc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7L12 2Z"/></symbol>
+    <symbol id="i-quote" viewBox="0 0 24 24" fill="currentColor"><path d="M9 6c-3 1.4-5 4.4-5 8v4h6v-6H6.5c.3-2 1.5-3.4 3.3-4.2L9 6Zm10 0c-3 1.4-5 4.4-5 8v4h6v-6h-3.5c.3-2 1.5-3.4 3.3-4.2L19 6Z"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.004c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.82 4.09a8.2 8.2 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.16 8.16 0 0 1-1.26-4.37c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42ZM8.84 8.03c-.15 0-.4.06-.61.28-.21.23-.8.79-.8 1.92 0 1.13.82 2.22.93 2.37.11.15 1.6 2.55 3.92 3.48 1.93.76 2.32.61 2.74.57.42-.04 1.36-.55 1.55-1.09.19-.54.19-1 .13-1.09-.06-.1-.21-.15-.44-.27-.23-.11-1.36-.67-1.57-.75-.21-.08-.36-.11-.51.11-.15.23-.58.75-.71.9-.13.15-.26.17-.49.06-.23-.12-.97-.36-1.85-1.14-.68-.61-1.14-1.36-1.28-1.59-.13-.23-.01-.35.1-.47.1-.1.23-.26.34-.4.11-.13.15-.23.23-.38.08-.15.04-.29-.02-.4-.06-.11-.51-1.24-.7-1.7-.18-.44-.37-.38-.51-.39-.13 0-.28-.01-.43-.01Z"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-verify" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14.2 4l2.7-.3 1.1 2.5 2.3 1.4-.6 2.7.6 2.7-2.3 1.4-1.1 2.5-2.7-.3L12 21.5 9.8 20l-2.7.3-1.1-2.5-2.3-1.4.6-2.7-.6-2.7 2.3-1.4L7.1 3.7 9.8 4 12 2.5Z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-logo" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8.4 6H15a3 3 0 0 1 3 3v6.6M6 8.4V15a3 3 0 0 0 3 3h6.6"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16v11H4zM3 9l1.5-5h15L21 9M9 20v-5h6v5"/></symbol>
+    <symbol id="i-factory" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l6 4V9l6 4V4h3v17H3Z"/></symbol>
+  </defs>
+</svg>
+
+<div id="progress"></div>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="#home" class="brand" aria-label="Automation Studio home">
+      <span class="brand-mark"><svg><use href="#i-logo"/></svg></span>
+      <span class="brand-txt"><b>Automation Studio</b><span>by Chandan Kumar</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#systems">Systems</a>
+      <a href="#about">About</a>
+      <a href="#why">Why Us</a>
+      <a href="#process">Process</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="#contact" class="btn btn-primary desktop-cta">Book a Call <svg><use href="#i-arrow"/></svg></a>
+      <button class="icon-btn hamburger" id="hamburger" aria-label="Open menu"><svg><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== MOBILE PANEL ===== -->
+<div class="mob-panel" id="mobPanel">
+  <div class="mob-inner">
+    <div class="mob-top">
+      <span class="brand"><span class="brand-mark"><svg><use href="#i-logo"/></svg></span><span class="brand-txt"><b>Automation Studio</b></span></span>
+      <button class="icon-btn" id="mobClose" aria-label="Close menu"><svg><use href="#i-close"/></svg></button>
+    </div>
+    <a href="#systems" data-mob>Systems</a>
+    <a href="#about" data-mob>About</a>
+    <a href="#why" data-mob>Why Us</a>
+    <a href="#process" data-mob>Process</a>
+    <a href="#reviews" data-mob>Reviews</a>
+    <a href="#faq" data-mob>FAQ</a>
+    <a href="#contact" data-mob>Contact</a>
+    <a href="#contact" data-mob class="btn btn-primary btn-block">Book a Free Call</a>
+    <a href="https://wa.me/918102441435?text=Hi%20Automation%20Studio%2C%20I%27d%20like%20to%20know%20more%20about%20your%20systems." target="_blank" rel="noopener" class="btn btn-wa btn-block"><svg style="width:17px;height:17px;fill:currentColor"><use href="#i-wa"/></svg> WhatsApp</a>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="hero-badge reveal"><span class="badge-dot"></span> <b>Automation &amp; Software Studio</b> · Patna, India</span>
+      <h1 class="reveal">Custom software that <span class="accent-word">runs your business</span> for you</h1>
+      <p class="hero-sub reveal">We design and build internal systems and automations tailored to how your business actually works — not another off-the-shelf tool you fight with.</p>
+      <div class="hero-cta reveal">
+        <a href="#contact" class="btn btn-primary">Book a Free Consult <svg><use href="#i-arrow"/></svg></a>
+        <a href="#systems" class="btn btn-ghost">Explore Systems</a>
+      </div>
+      <div class="trust-row reveal">
+        <span class="ti"><svg><use href="#i-checkmini"/></svg> 14 custom systems</span>
+        <span class="ti"><svg><use href="#i-checkmini"/></svg> Live in days</span>
+        <span class="ti"><svg><use href="#i-checkmini"/></svg> WhatsApp &amp; email delivery</span>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="pcard">
+        <div class="pcard-head">
+          <div class="pcard-title">
+            <div class="tt">Daily Sale Report</div>
+            <div class="dd">Mon · 04 Sep</div>
+          </div>
+          <span class="pcard-badge">Auto-sent</span>
+        </div>
+        <div class="kpi-row">
+          <div class="kpi"><div class="lbl">Today's Sales</div><div class="val" data-count="184200" data-prefix="₹">₹0</div></div>
+          <div class="kpi"><div class="lbl">Bills</div><div class="val" data-count="312">0</div></div>
+          <div class="kpi"><div class="lbl">vs Last Wk</div><div class="val up"><svg><use href="#i-up"/></svg>14%</div></div>
+        </div>
+        <div class="chart-box">
+          <div class="ct"><span>Sales · last 7 days</span><span>₹ in lakhs</span></div>
+          <div class="bars">
+            <div class="bar" style="height:44%"></div>
+            <div class="bar" style="height:62%"></div>
+            <div class="bar" style="height:38%"></div>
+            <div class="bar" style="height:72%"></div>
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:68%"></div>
+            <div class="bar today" style="height:88%"></div>
+          </div>
+          <div class="bar-labels"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+        </div>
+        <div class="spark-row">
+          <span class="st">30-day trend</span>
+          <div class="spark"><svg viewBox="0 0 240 34" preserveAspectRatio="none"><path class="line" id="sparkPath" d="M0,26 L20,22 L40,24 L60,16 L80,19 L100,12 L120,15 L140,9 L160,13 L180,7 L200,10 L220,5 L240,6"/></svg></div>
+        </div>
+        <div class="wa-chip">
+          <span class="wa-ico"><svg><use href="#i-wa"/></svg></span>
+          <span class="wt"><b>Report delivered</b> to owner &amp; managers</span>
+          <span class="wtime">9:02 AM <span class="tick">✓✓</span></span>
+        </div>
+        <div class="pcard-float">
+          <span class="fi"><svg><use href="#i-bolt"/></svg></span>
+          <span class="fx"><b>Zero manual work</b><span>runs every morning</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== STATS ===== -->
+<section class="stats" style="padding-top:0;padding-bottom:0">
+  <div class="wrap">
+    <div class="stat reveal"><div class="num" data-count="14">0</div><div class="lbl">Flagship systems</div></div>
+    <div class="stat reveal"><div class="num" data-count="50" data-suffix="+">0</div><div class="lbl">Automations delivered</div></div>
+    <div class="stat reveal"><div class="num" data-count="7" data-suffix=" days">0</div><div class="lbl">To first version</div></div>
+    <div class="stat reveal"><div class="num" data-count="6" data-suffix="+">0</div><div class="lbl">Industries served</div></div>
+  </div>
+</section>
+
+<!-- ===== SYSTEMS ===== -->
+<section id="systems">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What we build</span>
+      <h2>Fourteen systems, <span class="grad-text">built around you</span></h2>
+      <p>Each one is custom-built to fit your workflow — pick one to start, or combine several into a complete automation pipeline.</p>
+    </div>
+    <div class="sys-grid" id="sysGrid"></div>
+  </div>
+</section>
+
+<!-- ===== INDUSTRIES ===== -->
+<section class="section-alt" id="industries" style="padding:76px 0">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:40px">
+      <span class="eyebrow">Who we work with</span>
+      <h2 style="font-size:clamp(1.5rem,3vw,2.1rem)">Trusted across industries</h2>
+    </div>
+    <div class="ind-band reveal">
+      <span class="ind-chip"><svg><use href="#i-store"/></svg> Retail &amp; Showrooms</span>
+      <span class="ind-chip"><svg><use href="#i-box"/></svg> Distribution</span>
+      <span class="ind-chip"><svg><use href="#i-school"/></svg> Schools</span>
+      <span class="ind-chip"><svg><use href="#i-hospital"/></svg> Hospitals &amp; Clinics</span>
+      <span class="ind-chip"><svg><use href="#i-certificate"/></svg> Institutes</span>
+      <span class="ind-chip"><svg><use href="#i-factory"/></svg> Manufacturing</span>
+      <span class="ind-chip"><svg><use href="#i-truck"/></svg> Wholesale</span>
+      <span class="ind-chip"><svg><use href="#i-funnel"/></svg> B2B Services</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT / FOUNDER ===== -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <span class="eyebrow">About the founder</span>
+        <h2>Built by <span class="grad-text">Chandan Kumar</span></h2>
+        <p>Hi, I'm <strong>Chandan Kumar</strong> — an <strong>AI Research &amp; Data Analyst</strong> based in Patna, Bihar. I help Indian businesses turn messy spreadsheets and manual work into clean, automated systems that run on their own.</p>
+        <p>From daily sales reports to full ERP, inventory and WhatsApp AI automation, I design and build software around exactly how your business works — then stay on to support it as you grow.</p>
+        <div class="chips">
+          <span class="chip">AI Research</span>
+          <span class="chip">Data Analysis</span>
+          <span class="chip">Automation</span>
+          <span class="chip">Dashboards</span>
+          <span class="chip">WhatsApp API</span>
+          <span class="chip">CRM &amp; ERP</span>
+          <span class="chip">Google Workspace</span>
+          <span class="chip">Apps Script</span>
+        </div>
+        <div class="cert-list">
+          <div class="cert-item">
+            <span class="cert-badge"><svg><use href="#i-verify"/></svg></span>
+            <span class="ci"><b>Claude.ai</b><span>AI tools &amp; automation — Certified</span></span>
+          </div>
+          <div class="cert-item">
+            <span class="cert-badge"><svg><use href="#i-verify"/></svg></span>
+            <span class="ci"><b>Google AI Workshop</b><span>Google AI &amp; Workspace — Certified</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual reveal">
+        <div class="profile-card">
+          <div class="avatar-wrap">
+            <div class="avatar-ring"></div>
+            <div class="avatar-ring2"></div>
+            <div class="avatar">CK</div>
+          </div>
+          <div class="profile-name">Chandan Kumar</div>
+          <div class="profile-role">AI Research &amp; Data Analyst</div>
+          <div class="profile-loc"><svg><use href="#i-loc"/></svg> Patna, Bihar</div>
+          <div class="profile-verified">
+            <span class="pv"><svg><use href="#i-verify"/></svg> Claude.ai</span>
+            <span class="pv"><svg><use href="#i-verify"/></svg> Google AI Workshop</span>
+          </div>
+          <a href="https://www.instagram.com/smart_businessautomation?igsi=MThkZ2doN2JxeHNjbA==" target="_blank" rel="noopener" class="btn btn-ig btn-block"><svg style="fill:none;stroke:currentColor"><use href="#i-instagram"/></svg> Follow on Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY ===== -->
+<section class="section-alt" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why Automation Studio</span>
+      <h2>Software you'll <span class="grad-text">actually use</span></h2>
+      <p>A hands-on studio — that means real ownership, plain talk, and systems your team adopts without a fight.</p>
+    </div>
+    <div class="why-grid" id="whyGrid"></div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section id="process">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">How we work</span>
+      <h2>From headache to <span class="grad-text">handled</span>, in four steps</h2>
+      <p>A clear, low-risk path — you see something working early, then we refine it with you.</p>
+    </div>
+    <div class="proc-grid" id="procGrid"></div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section-alt" id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">In their words</span>
+      <h2>Owners who <span class="grad-text">got their time back</span></h2>
+    </div>
+    <div class="reveal">
+      <div class="testi-viewport" id="testiViewport">
+        <div class="testi-track" id="testiTrack"></div>
+      </div>
+      <div class="testi-controls">
+        <button class="icon-btn" id="testiPrev" aria-label="Previous review"><svg style="transform:rotate(180deg)"><use href="#i-arrow"/></svg></button>
+        <div class="testi-dots" id="testiDots"></div>
+        <button class="icon-btn" id="testiNext" aria-label="Next review"><svg><use href="#i-arrow"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Good questions</span>
+      <h2>Everything you're <span class="grad-text">wondering about</span></h2>
+    </div>
+    <div class="faq-wrap" id="faqWrap"></div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section-alt" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <span class="eyebrow">Let's talk</span>
+        <h2>Let's automate <span class="grad-text">your business</span></h2>
+        <p>Tell us your biggest daily headache. We'll show you exactly how a custom system fixes it — no jargon, no obligation.</p>
+        <div class="contact-cards">
+          <a href="tel:+918102441435" class="cc cc-phone">
+            <span class="cc-ico"><svg><use href="#i-phone"/></svg></span>
+            <span><span class="lbl">Call us</span><span class="val mono">+91 81024 41435</span></span>
+          </a>
+          <a href="https://wa.me/918102441435?text=Hi%20Automation%20Studio%2C%20I%27d%20like%20a%20free%20consultation." target="_blank" rel="noopener" class="cc cc-wa">
+            <span class="cc-ico"><svg style="fill:currentColor;stroke:none"><use href="#i-wa"/></svg></span>
+            <span><span class="lbl">WhatsApp</span><span class="val">Chat with us</span></span>
+          </a>
+          <a href="mailto:ck603305@gmail.com" class="cc cc-mail">
+            <span class="cc-ico"><svg><use href="#i-mail"/></svg></span>
+            <span><span class="lbl">Email</span><span class="val">ck603305@gmail.com</span></span>
+          </a>
+          <a href="https://www.instagram.com/smart_businessautomation?igsi=MThkZ2doN2JxeHNjbA==" target="_blank" rel="noopener" class="cc cc-ig">
+            <span class="cc-ico"><svg style="fill:none;stroke:currentColor"><use href="#i-instagram"/></svg></span>
+            <span><span class="lbl">Instagram</span><span class="val">@smart_businessautomation</span></span>
+          </a>
+          <div class="cc cc-loc" style="cursor:default">
+            <span class="cc-ico"><svg><use href="#i-loc"/></svg></span>
+            <span><span class="lbl">Based in</span><span class="val">Patna, Bihar, India</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-panel reveal">
+        <h3>Book a Free Call</h3>
+        <p class="fp-sub">Fill this in and hit send — it opens WhatsApp with your details ready to go. We reply within a few hours.</p>
+        <form id="leadForm" novalidate>
+          <div class="field">
+            <label>Your Name <span>*</span></label>
+            <input type="text" id="fName" placeholder="e.g. Rakesh Agarwal" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label>Phone / WhatsApp <span>*</span></label>
+            <input type="tel" id="fPhone" placeholder="10-digit mobile number" autocomplete="tel" maxlength="15" required>
+          </div>
+          <div class="field">
+            <label>Business Type</label>
+            <div class="select-wrap">
+              <select id="fType">
+                <option value="Retail / Showroom">Retail / Showroom</option>
+                <option value="Distribution / Wholesale">Distribution / Wholesale</option>
+                <option value="School">School</option>
+                <option value="Hospital / Clinic">Hospital / Clinic</option>
+                <option value="Institute / Coaching">Institute / Coaching</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Which system are you interested in?</label>
+            <div class="select-wrap">
+              <select id="fSystem">
+                <option value="Not sure yet — need advice">Not sure yet — need advice</option>
+                <option value="Daily Sale Report (DSR) System">Daily Sale Report (DSR)</option>
+                <option value="ERP System">ERP System</option>
+                <option value="Inventory Management System">Inventory Management System</option>
+                <option value="Supply Chain Management">Supply Chain Management</option>
+                <option value="Order To Delivery Tracker">Order To Delivery Tracker</option>
+                <option value="Purchase Report System">Purchase Report System</option>
+                <option value="WhatsApp Auto Message System">WhatsApp Auto Message System</option>
+                <option value="WhatsApp AI API Integration">WhatsApp AI API Integration</option>
+                <option value="Attendance System">Attendance System</option>
+                <option value="School Management System">School Management System</option>
+                <option value="Hospital Management System">Hospital Management System</option>
+                <option value="Institute Management System">Institute Management System</option>
+                <option value="Custom Data Analyst System">Custom Data Analyst System</option>
+                <option value="Custom CRM App">Custom CRM App</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Your biggest headache (optional)</label>
+            <textarea id="fMsg" placeholder="e.g. Daily sales tally takes 2 hours and is always wrong…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-wa btn-block"><svg style="width:18px;height:18px;fill:currentColor"><use href="#i-wa"/></svg> Send on WhatsApp</button>
+          <p class="form-note">Prefer email? <a href="mailto:ck603305@gmail.com" style="color:var(--primary);font-weight:600">ck603305@gmail.com</a> · Or call <a href="tel:+918102441435" style="color:var(--primary);font-weight:600">+91 81024 41435</a></p>
+          <div class="form-success" id="formSuccess"><svg><use href="#i-checkmini"/></svg> Opening WhatsApp… if it didn't open, message us at +91 81024 41435.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand"><span class="brand-mark"><svg><use href="#i-logo"/></svg></span><span class="brand-txt"><b>Automation Studio</b><span>by Chandan Kumar · Patna</span></span></span>
+        <p class="foot-tag">Custom internal software and automations for Indian businesses — reports, dashboards, inventory, WhatsApp AI, CRMs and full management systems, built around how you actually work.</p>
+        <div class="foot-social">
+          <a href="https://www.instagram.com/smart_businessautomation?igsi=MThkZ2doN2JxeHNjbA==" target="_blank" rel="noopener" class="ig" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a>
+          <a href="https://wa.me/918102441435" target="_blank" rel="noopener" aria-label="WhatsApp"><svg style="fill:currentColor;stroke:none"><use href="#i-wa"/></svg></a>
+          <a href="mailto:ck603305@gmail.com" aria-label="Email"><svg><use href="#i-mail"/></svg></a>
+          <a href="tel:+918102441435" aria-label="Call"><svg><use href="#i-phone"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Systems</h4>
+        <ul>
+          <li><a href="#systems">Daily Sale Report</a></li>
+          <li><a href="#systems">ERP &amp; Inventory</a></li>
+          <li><a href="#systems">Supply Chain</a></li>
+          <li><a href="#systems">WhatsApp AI API</a></li>
+          <li><a href="#systems">Custom CRM App</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#process">Our Process</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="tel:+918102441435">+91 81024 41435</a></li>
+          <li><a href="mailto:ck603305@gmail.com">ck603305@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/smart_businessautomation?igsi=MThkZ2doN2JxeHNjbA==" target="_blank" rel="noopener">@smart_businessautomation</a></li>
+        </ul>
+        <span class="foot-contact-chip"><svg><use href="#i-loc"/></svg> Patna, Bihar, India</span>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Automation Studio · Chandan Kumar. All rights reserved.</p>
+      <p>Built to run your business, not slow it down.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/918102441435?text=Hi%20Automation%20Studio%2C%20I%27d%20like%20to%20know%20more%20about%20your%20systems." target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+  <svg><use href="#i-wa"/></svg>
+</a>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var systems = [
+    {icon:'chart',title:'Daily Sale Report (DSR) System',hook:"Wake up to yesterday's sales, already totalled and sorted.",features:["Auto-collects sales from every counter","Delivers to WhatsApp, email, dashboard","Store, item, cashier breakdowns","Compare today vs last week"],outcome:"Know your numbers by 9 AM, every single day",bestFor:"Multi-counter retailers & busy owners"},
+    {icon:'layers',title:'ERP System',hook:"Run inventory, billing, accounts and HR from one place.",features:["Live stock across all locations","Billing linked to accounts","Staff, payroll and attendance","One login, one source of truth"],outcome:"Stop juggling five tools and endless Excel sheets",bestFor:"Growing distributors & manufacturers"},
+    {icon:'box',title:'Inventory Management System',hook:"Always know what's in stock, what's moving, what's not.",features:["Live stock across locations","Low-stock & reorder alerts","Batch, expiry & barcode support","Fast vs slow mover reports"],outcome:"Never oversell or run out of a bestseller again",bestFor:"Retailers, warehouses & wholesalers"},
+    {icon:'truck',title:'Supply Chain Management',hook:"Track every vendor, PO and delivery in one thread.",features:["Purchase orders start to finish","Stock movement between locations","Vendor and delivery timelines","Alerts on delays and shortfalls"],outcome:"Catch delays before they become stockouts",bestFor:"Distributors & multi-warehouse businesses"},
+    {icon:'route',title:'Order To Delivery Tracker',hook:"Follow every order from placed to delivered, live.",features:["Order status at each stage","Dispatch & courier tracking","Delivery timelines & delay flags","Customers get auto updates"],outcome:"Stop the 'where is my order?' calls for good",bestFor:"D2C brands, distributors & service teams"},
+    {icon:'receipt',title:'Purchase Report System',hook:"See exactly where your purchase money goes each month.",features:["Vendor spend at a glance","Reorder alerts on fast movers","Stock ageing and dead-stock view","Price trends across suppliers"],outcome:"Cut reorder mistakes by tracking ageing live",bestFor:"Retailers & wholesalers with many SKUs"},
+    {icon:'chat',title:'WhatsApp Auto Message System',hook:"Every order update and reminder sent while you sleep.",features:["Order and dispatch updates","Payment and renewal reminders","Festival offers and follow-ups","Templates approved and ready"],outcome:"Reach every customer without hiring a caller",bestFor:"Shops, clinics & service businesses"},
+    {icon:'aibot',title:'WhatsApp AI API Integration',hook:"An AI assistant that replies to customers 24/7 on WhatsApp.",features:["Official WhatsApp Business API","AI answers common questions","Captures leads & orders live","Hands off to your team when needed"],outcome:"Reply instantly, even after business hours",bestFor:"High-enquiry shops & service brands"},
+    {icon:'attend',title:'Attendance System',hook:"Staff and student attendance, marked and reported on its own.",features:["Biometric, mobile or QR check-in","Live in / out & late reports","Leaves and holidays managed","Payroll-ready monthly summary"],outcome:"No more manual registers or payroll disputes",bestFor:"Offices, schools & factories"},
+    {icon:'school',title:'School Management System',hook:"Attendance, fees and exams — without the paperwork pile.",features:["Student records and attendance","Fee collection and receipts","Exam marks and report cards","Parent updates on WhatsApp"],outcome:"Collect fees faster and keep parents in the loop",bestFor:"Schools & coaching chains"},
+    {icon:'hospital',title:'Hospital Management System',hook:"From appointment to discharge bill, nothing slips through.",features:["Patient records and history","Appointment and OPD queues","IPD admission and billing","Reports and prescriptions saved"],outcome:"Shorter queues and cleaner billing every visit",bestFor:"Clinics, nursing homes & diagnostic centres"},
+    {icon:'certificate',title:'Institute Management System',hook:"Manage batches, admissions and fees — no register chaos.",features:["Admissions and batch allotment","Fee plans and reminders","Attendance per batch","Certificates generated instantly"],outcome:"Fill batches and recover fees on time",bestFor:"Coaching institutes & skill academies"},
+    {icon:'dashboard',title:'Custom Data Analyst System',hook:"Turn your existing data into decisions, not guesswork.",features:["Dashboards on your own data","Works with Sheets, DB or ERP","Trends, leaks and outliers surfaced","Refreshes on its own daily"],outcome:"Spot what's leaking money before month-end",bestFor:"Owners drowning in spreadsheets"},
+    {icon:'funnel',title:'Custom CRM App',hook:"Never lose a lead to a missed follow-up again.",features:["Leads captured in one pipeline","Follow-up tasks and reminders","Stage-wise deal tracking","Built around your sales flow"],outcome:"Close more by following up on time, every time",bestFor:"Sales teams & B2B service firms"}
+  ];
+  var whys = [
+    {icon:'tailor',title:'Built For You',desc:"Every system is designed around your actual workflow and team, never forced onto a generic off-the-shelf template."},
+    {icon:'chat',title:'Plain, Honest English',desc:"We explain what we build in clear language, so you always know exactly what you're paying for."},
+    {icon:'plug',title:'Fits Your Existing Tools',desc:"Connects with Tally, Sheets, WhatsApp, your ERP and billing — nothing you rely on gets thrown away."},
+    {icon:'rocket',title:'Quick, Real Results',desc:"You see a working version early, then we refine it fast with your feedback until it fits."},
+    {icon:'shield',title:'Your Data, Protected',desc:"Your data stays in your own accounts and systems, access controlled, never sold or shared."},
+    {icon:'handshake',title:'Support That Stays',desc:"We stay on after launch to fix, tune, and grow the system as your business scales."}
+  ];
+  var steps = [
+    {icon:'search',title:'Understand Your Work',desc:"We study how you operate today and map exactly where automation saves you time."},
+    {icon:'blueprint',title:'Design And Build',desc:"We design the system and build a working version tailored to your real process."},
+    {icon:'check',title:'Test Together',desc:"You use it on real data while we refine every detail from your feedback."},
+    {icon:'flag',title:'Launch And Support',desc:"We roll it out, train your team, and stay on to support it."}
+  ];
+  var testimonials = [
+    {quote:"We used to close billing at 11pm and still get stock wrong. Their ERP cut our end-of-day reconciliation to 20 minutes and stockouts dropped sharply.",name:"Rakesh Agarwal",role:"Owner, Shreeji Retail Mart",loc:"Indore, MP",initials:"RA"},
+    {quote:"Fee collection was a monthly headache with endless follow-ups. The management system sends parents automatic reminders now, and our pending fees fell from 40% to under 8%.",name:"Meena Iyer",role:"Director, Vidya Bright Academy",loc:"Pune, MH",initials:"MI"},
+    {quote:"Tracking 60 vendor deliveries on WhatsApp was chaos. Their supply chain dashboard shows every PO and delivery live, so we stopped losing two days chasing dispatch updates.",name:"Imran Sheikh",role:"Managing Partner, Deccan Distributors",loc:"Hyderabad, TS",initials:"IS"}
+  ];
+  var faqs = [
+    {q:"How much does a custom system cost?",a:"It depends on the scope and which systems you need. We scope it with you first, then give a clear, fixed quote before any work begins. No hidden charges."},
+    {q:"Is my business data safe?",a:"Yes. Your data stays inside your own accounts and systems. We use controlled access, never sell or share it, and can sign an NDA if you want."},
+    {q:"How long does it take to go live?",a:"Most systems have a working version within a few weeks. Simple tools like a Daily Sale Report go faster; larger ERP setups take longer. We share a clear timeline upfront."},
+    {q:"Will it work with my current tools?",a:"Yes. We connect with what you already use — including Tally, Excel or Google Sheets, WhatsApp, billing software and most ERPs — so you keep your existing setup."},
+    {q:"Will my staff actually be able to use it?",a:"Yes. We design for non-technical users and train your team hands-on. Screens stay simple, and we provide short, easy guides your staff can follow."},
+    {q:"What happens after the system is live?",a:"We stay with you. You get ongoing support to fix issues, make changes, and add features as your business grows. You're never left on your own."}
+  ];
+
+  function svg(id){return '<svg><use href="#i-'+id+'"/></svg>';}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+  var sysGrid = document.getElementById('sysGrid');
+  systems.forEach(function(s,i){
+    var num = ('0'+(i+1)).slice(-2);
+    var feats = s.features.map(function(f){return '<li>'+svg('checkmini')+'<span>'+esc(f)+'</span></li>';}).join('');
+    var el = document.createElement('div');
+    el.className = 'sys-card reveal';
+    el.innerHTML =
+      '<div class="sys-top"><div class="sys-icon">'+svg(s.icon)+'</div><span class="module-chip">'+num+' / 14</span></div>'+
+      '<h3>'+esc(s.title)+'</h3><p class="sys-hook">'+esc(s.hook)+'</p>'+
+      '<ul class="sys-feats">'+feats+'</ul>'+
+      '<div class="sys-foot"><div class="sys-outcome">'+svg('up')+'<span>'+esc(s.outcome)+'</span></div>'+
+      '<div class="sys-bestfor">Best for: <b>'+esc(s.bestFor)+'</b></div></div>';
+    sysGrid.appendChild(el);
+  });
+
+  var whyGrid = document.getElementById('whyGrid');
+  whys.forEach(function(w){
+    var el = document.createElement('div');
+    el.className = 'why-card reveal';
+    el.innerHTML = '<div class="why-ico">'+svg(w.icon)+'</div><h3>'+esc(w.title)+'</h3><p>'+esc(w.desc)+'</p>';
+    whyGrid.appendChild(el);
+  });
+
+  var procGrid = document.getElementById('procGrid');
+  steps.forEach(function(s,i){
+    var el = document.createElement('div');
+    el.className = 'proc-step reveal';
+    el.innerHTML = '<div class="proc-ico">'+svg(s.icon)+'</div><div class="proc-num">'+('0'+(i+1)).slice(-2)+'</div><h3>'+esc(s.title)+'</h3><p>'+esc(s.desc)+'</p>';
+    procGrid.appendChild(el);
+  });
+
+  var track = document.getElementById('testiTrack');
+  var dotsWrap = document.getElementById('testiDots');
+  testimonials.forEach(function(t,i){
+    var card = document.createElement('div');
+    card.className = 'testi-card';
+    card.innerHTML =
+      '<div class="testi-inner"><div class="testi-quote-ico">'+svg('quote')+'</div>'+
+      '<div class="testi-stars">'+svg('star')+svg('star')+svg('star')+svg('star')+svg('star')+'</div>'+
+      '<p class="testi-text">"'+esc(t.quote)+'"</p>'+
+      '<div class="testi-author"><div class="testi-avatar">'+esc(t.initials)+'</div>'+
+      '<div class="testi-meta"><b>'+esc(t.name)+'</b><span>'+esc(t.role)+' · '+esc(t.loc)+'</span></div></div></div>';
+    track.appendChild(card);
+    var dot = document.createElement('button');
+    dot.className = 'testi-dot'+(i===0?' active':'');
+    dot.setAttribute('aria-label','Go to review '+(i+1));
+    dot.addEventListener('click',function(){go(i);startAuto();});
+    dotsWrap.appendChild(dot);
+  });
+  var idx = 0, autoTimer;
+  var dots = dotsWrap.querySelectorAll('.testi-dot');
+  function go(n){
+    idx = (n+testimonials.length)%testimonials.length;
+    track.style.transform = 'translateX(-'+(idx*100)+'%)';
+    dots.forEach(function(d,i){d.classList.toggle('active',i===idx);});
+  }
+  function startAuto(){ if(reduceMotion) return; stopAuto(); autoTimer = setInterval(function(){go(idx+1);},6000);}
+  function stopAuto(){ if(autoTimer) clearInterval(autoTimer);}
+  document.getElementById('testiNext').addEventListener('click',function(){go(idx+1);startAuto();});
+  document.getElementById('testiPrev').addEventListener('click',function(){go(idx-1);startAuto();});
+  var vp = document.getElementById('testiViewport');
+  vp.addEventListener('mouseenter',stopAuto);
+  vp.addEventListener('mouseleave',startAuto);
+  var sx=null;
+  vp.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+  vp.addEventListener('touchend',function(e){ if(sx===null)return; var dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40){ dx<0?go(idx+1):go(idx-1);} sx=null; startAuto();},{passive:true});
+  startAuto();
+
+  var faqWrap = document.getElementById('faqWrap');
+  faqs.forEach(function(f,i){
+    var d = document.createElement('details');
+    d.className = 'faq-item'; if(i===0) d.open = true;
+    d.innerHTML = '<summary>'+esc(f.q)+'<span class="faq-q-ico">'+svg('plus')+'</span></summary><div class="faq-a">'+esc(f.a)+'</div>';
+    faqWrap.appendChild(d);
+  });
+
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduceMotion){
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          var el = en.target;
+          var parent = el.parentElement;
+          var sibs = parent ? Array.prototype.filter.call(parent.children,function(c){return c.classList.contains('reveal');}) : [el];
+          var pos = sibs.indexOf(el);
+          el.style.transitionDelay = (Math.max(0,pos)*60)+'ms';
+          el.classList.add('in');
+          ro.unobserve(el);
+        }
+      });
+    },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el){ro.observe(el);});
+  } else {
+    revealEls.forEach(function(el){el.classList.add('in');});
+  }
+
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var prefix = el.getAttribute('data-prefix')||'';
+    var suffix = el.getAttribute('data-suffix')||'';
+    var isMoney = prefix==='₹';
+    function fmt(v){ return prefix+(isMoney? Math.round(v).toLocaleString('en-IN') : String(Math.round(v)))+suffix; }
+    if(reduceMotion){ el.textContent = fmt(target); return; }
+    var dur = 1400, start = null;
+    function tick(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts-start)/dur,1);
+      var eased = 1-Math.pow(1-p,3);
+      el.textContent = fmt(target*eased);
+      if(p<1) requestAnimationFrame(tick); else el.textContent = fmt(target);
+    }
+    requestAnimationFrame(tick);
+  }
+  var counted = false;
+  function runCounts(){ if(counted) return; counted = true; document.querySelectorAll('.stats [data-count]').forEach(animateCount); }
+  var statsSec = document.querySelector('.stats');
+  if('IntersectionObserver' in window){
+    var co = new IntersectionObserver(function(e){ if(e[0].isIntersecting){ runCounts(); co.disconnect(); }},{threshold:0.4});
+    if(statsSec) co.observe(statsSec);
+    setTimeout(function(){ document.querySelectorAll('.pcard [data-count]').forEach(animateCount); },700);
+  } else { runCounts(); document.querySelectorAll('.pcard [data-count]').forEach(animateCount); }
+
+  var spark = document.getElementById('sparkPath');
+  if(spark){
+    try{
+      var len = spark.getTotalLength();
+      spark.style.strokeDasharray = len;
+      if(reduceMotion){ spark.style.strokeDashoffset = 0; }
+      else { spark.style.strokeDashoffset = len; spark.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.16,1,.3,1)'; setTimeout(function(){ spark.style.strokeDashoffset = 0; },600); }
+    }catch(e){}
+  }
+
+  var nav = document.getElementById('nav');
+  var progress = document.getElementById('progress');
+  function onScroll(){
+    var y = window.scrollY;
+    nav.classList.toggle('scrolled', y>40);
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (h>0 ? (y/h*100) : 0)+'%';
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id = a.getAttribute('href');
+      if(id.length<2) return;
+      var t = document.querySelector(id);
+      if(!t) return;
+      e.preventDefault();
+      var top = t.getBoundingClientRect().top + window.scrollY - 64;
+      window.scrollTo({top:top,behavior: reduceMotion?'auto':'smooth'});
+      closeMob();
+    });
+  });
+
+  var mob = document.getElementById('mobPanel');
+  function openMob(){ mob.classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeMob(){ mob.classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('hamburger').addEventListener('click',openMob);
+  document.getElementById('mobClose').addEventListener('click',closeMob);
+  mob.addEventListener('click',function(e){ if(e.target===mob) closeMob(); });
+
+  var form = document.getElementById('leadForm');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name = document.getElementById('fName').value.trim();
+    var phone = document.getElementById('fPhone').value.trim();
+    var type = document.getElementById('fType').value;
+    var system = document.getElementById('fSystem').value;
+    var msg = document.getElementById('fMsg').value.trim();
+    if(!name){ document.getElementById('fName').focus(); return; }
+    if(!phone){ document.getElementById('fPhone').focus(); return; }
+    var text = "Hi Automation Studio! I'd like a free consultation.\n\n"+
+      "• Name: "+name+"\n"+
+      "• Phone: "+phone+"\n"+
+      "• Business: "+type+"\n"+
+      "• Interested in: "+system+"\n"+
+      (msg? "• My headache: "+msg+"\n" : "");
+    var url = "https://wa.me/918102441435?text="+encodeURIComponent(text);
+    document.getElementById('formSuccess').classList.add('show');
+    window.open(url,'_blank','noopener');
+  });
+
+})();
+</script>
+
+</body>
+</html>
